@@ -1,0 +1,172 @@
+/* General Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a; /* Dark background */
+    color: #ffffff; /* White text */
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Header/Navigation Bar Styling */
+header {
+    background-color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    border-bottom: 2px solid #107C10; /* Xbox Green line */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #107C10; /* Xbox Green */
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li a {
+    padding: 10px 15px;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #107C10; /* Hover color */
+}
+
+.sign-in {
+    padding: 8px 15px;
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.sign-in:hover {
+    background-color: #107C10;
+    border-color: #107C10;
+}
+
+/* Hero Section Styling (The Big Banner) */
+.hero {
+    background: url('https://via.placeholder.com/1500x600/000000/FFFFFF?text=Xbox+Hero+Image') no-repeat center center/cover;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Button Styling */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 5px;
+    border-radius: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: opacity 0.3s;
+}
+
+.btn.primary {
+    background-color: #107C10; /* Xbox Green */
+    color: #ffffff;
+    border: none;
+}
+
+.btn.secondary {
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn.small {
+    padding: 8px 15px;
+    font-size: 12px;
+}
+
+/* Products Section */
+.products {
+    padding: 50px;
+    text-align: center;
+}
+
+.products h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #107C10;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.card {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #fff;
+    margin-top: 0;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #000000;
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    margin-top: 40px;
+}
