@@ -1,62 +1,1045 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xbox Style Website</title>
-    <link rel="stylesheet" href="xbox.css"> 
+    <title>Xbox Official Site: Consoles, Games, and Community</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: white;
+            padding: 0 20px;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .microsoft-logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: #5e5e5e;
+        }
+
+        .xbox-logo {
+            color: #107c10;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            color: #262626;
+            font-size: 13px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-menu li:hover {
+            text-decoration: underline;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .search-btn,
+        .cart-btn,
+        .signin-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            color: #262626;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #8b4513 100%);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600"><rect fill="%231a1a1a" width="1600" height="600"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 80px 60px;
+            color: white;
+            z-index: 2;
+        }
+
+        .play-tag {
+            background: #ffd800;
+            color: black;
+            padding: 5px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 72px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.4;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: #107c10;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #0e6b0e;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #1a1a1a;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .play-pause {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: white;
+        }
+
+        .icon-menu {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+        }
+
+        .icon-item {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .icon-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-svg {
+            width: 60px;
+            height: 60px;
+            stroke: #107c10;
+            stroke-width: 3;
+            fill: none;
+        }
+
+        .content-grid {
+            padding: 40px 20px;
+            background: #f5f5f5;
+        }
+
+        .grid-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 20px;
+            grid-template-areas:
+                "left top-right"
+                "left bottom-right"
+                "bottom bottom";
+        }
+
+        .grid-item {
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            min-height: 300px;
+        }
+
+        .large-left {
+            grid-area: left;
+            min-height: 620px;
+        }
+
+        .medium-top-right {
+            grid-area: top-right;
+        }
+
+        .medium-bottom-right {
+            grid-area: bottom-right;
+        }
+
+        .bottom-full {
+            grid-area: bottom;
+            min-height: 400px;
+        }
+
+        .card-content {
+            width: 100%;
+            height: 100%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .simpsons-card {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%),
+                linear-gradient(135deg, #87ceeb 0%, #98d8e8 20%, #b0e0e6 40%, #dda0dd 60%, #90ee90 80%, #f0e68c 100%);
+            color: white;
+        }
+
+        .badge {
+            background: #ffd800;
+            color: black;
+            padding: 5px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+            width: fit-content;
+        }
+
+        .card-title {
+            font-size: 48px;
+            font-weight: 600;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .green-card {
+            background: #107c10;
+            color: white;
+            justify-content: center;
+        }
+
+        .card-subtitle {
+            font-size: 36px;
+            font-weight: 600;
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+        }
+
+        .card-description {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .btn-white {
+            background: white;
+            color: #107c10;
+            border: none;
+            padding: 12px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: fit-content;
+            transition: transform 0.3s;
+        }
+
+        .btn-white:hover {
+            transform: scale(1.05);
+        }
+
+        .gamepass-grid {
+            background: linear-gradient(135deg, #0d5c0d 0%, #107c10 100%);
+            padding: 30px;
+        }
+
+        .gamepass-logo {
+            margin-bottom: 30px;
+        }
+
+        .game-thumbnails {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .game-thumb {
+            background: linear-gradient(135deg, #1a1a1a 0%, #3a3a3a 100%);
+            border-radius: 6px;
+            height: 120px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .game-thumb:nth-child(1) {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        }
+
+        .game-thumb:nth-child(2) {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+        }
+
+        .game-thumb:nth-child(3) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .game-thumb:nth-child(4) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .controller-card {
+            background: linear-gradient(to right, #d4d9dd 0%, #e8edf1 50%, #f5f7f9 100%);
+            padding: 60px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .controller-image {
+            width: 600px;
+            height: 300px;
+            background: linear-gradient(135deg, #ffffff 0%, #e8e8e8 100%);
+            border-radius: 100px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .controller-image::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: #0e7a0d;
+            border-radius: 50%;
+            bottom: 30px;
+            right: 80px;
+            box-shadow: 0 5px 15px rgba(14, 122, 13, 0.3);
+        }
+
+        .controller-image::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #2d2d2d;
+            border-radius: 50%;
+            top: 50px;
+            left: 100px;
+        }
+
+        @media (max-width: 1200px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "left"
+                    "top-right"
+                    "bottom-right"
+                    "bottom";
+            }
+
+            .controller-image {
+                width: 100%;
+                max-width: 500px;
+            }
+        }
+
+        .promo-section {
+            padding: 40px 20px;
+            background: white;
+        }
+
+        .promo-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+        }
+
+        .promo-card {
+            padding: 60px 50px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .purple-card {
+            background: linear-gradient(135deg, #8b7fc7 0%, #9d8fd6 50%, #b8a8e8 100%);
+            color: white;
+        }
+
+        .white-card {
+            background: white;
+            color: #1a1a1a;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .image-card {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .promo-badge {
+            background: #ffd800;
+            color: black;
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
+            width: fit-content;
+        }
+
+        .promo-badge.yellow {
+            background: #ffd800;
+        }
+
+        .promo-title {
+            font-size: 42px;
+            font-weight: 600;
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+        }
+
+        .promo-title-dark {
+            font-size: 42px;
+            font-weight: 600;
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+            color: #1a1a1a;
+        }
+
+        .promo-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .promo-text-dark {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #262626;
+        }
+
+        .btn-promo {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 12px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: fit-content;
+            transition: all 0.3s;
+        }
+
+        .btn-promo:hover {
+            background: white;
+            color: #8b7fc7;
+        }
+
+        .btn-promo-dark {
+            background: black;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: fit-content;
+            transition: all 0.3s;
+        }
+
+        .btn-promo-dark:hover {
+            background: #333;
+        }
+
+        .fantasy-art {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a0a2e 0%, #3d1f47 25%, #7b2d5a 50%, #c44569 75%, #f4a460 100%);
+            position: relative;
+        }
+
+        .fantasy-art::before {
+            content: '⚔️';
+            position: absolute;
+            font-size: 120px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.3;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 60px 40px 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .social-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .follow-text {
+            font-size: 16px;
+            color: #262626;
+            font-weight: 500;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            color: #262626;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-icon:hover {
+            color: #107c10;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #262626;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: #5e5e5e;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #107c10;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-left {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .img-dec-2 {
+            width: 4vw;
+            height: 4vw;
+            display: flex;
+            margin: 2vw 0vw 0vw 20vw;
+            gap: 5vw;
+        }
+
+        .text-dec {
+            display: flex;
+            margin: 0vw 0vw 0vw 20vw;
+            gap: 5vw;
+        }
+
+        .language-btn,
+        .privacy-btn {
+            background: transparent;
+            border: 1px solid #d0d0d0;
+            padding: 8px 16px;
+            font-size: 13px;
+            color: #262626;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .exclusive-idea-1 {
+            margin: 0vw 0vw 0vw 0vw;
+        }
+
+        .exclusive-idea-2 {
+            margin: 0vw 0vw 0vw -0.7vw;
+        }
+
+        .exclusive-idea-3 {
+            margin: 0vw 0vw 0vw 0vw;
+        }
+
+        .exclusive-idea-4 {
+            margin: 0vw 0vw 0vw -0.8vw;
+        }
+
+        .exclusive-idea-5 {
+            margin: 0vw 0vw 0vw 0vw;
+        }
+
+        .exclusive-idea-6 {
+            margin: 0vw 0vw 0vw 0vw;
+        }
+
+        .language-btn:hover,
+        .privacy-btn:hover {
+            border-color: #107c10;
+        }
+
+        .footer-link {
+            color: #5e5e5e;
+            text-decoration: none;
+            font-size: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #107c10;
+        }
+
+        .copyright {
+            color: #5e5e5e;
+            font-size: 12px;
+        }
+
+        @media (max-width: 1200px) {
+            .promo-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-right {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <header>
-        <div class="logo">XBOX</div>
-        <nav>
-            <ul>
-                <li><a href="gamepage.html">Games</a></li>
-                <li><a href="#">Consoles</a></li>
-                <li><a href="#">Accessories</a></li>
-                <li><a href="#">Support</a></li>
-            </ul>
-        </nav>
-        <div class="actions">
-            <a href="signup.html" class="sign-in">Sign In</a>
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo-section">
+                    <div class="microsoft-logo">Microsoft</div>
+                    <div class="xbox-logo">XBOX</div>
+                </div>
+                <ul class="nav-menu">
+                    <li>Game Pass ∨</li>
+                    <li>Games ∨</li>
+                    <li>Devices ∨</li>
+                    <li>Store ∨</li>
+                    <li>Community ∨</li>
+                    <li>Support ∨</li>
+                    <li>Developers ∨</li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <span>All Microsoft ∨</span>
+                <button class="search-btn">Search 🔍</button>
+                <button class="cart-btn">Cart 🛒</button>
+                <a href="signin.html" class="signin-btn">Sign in 👤</a>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
+    <section class="hero-section">
+        <div class="hero-bg"></div>
         <div class="hero-content">
-            <h1>Power Your Dreams</h1>
-            <p>The next generation of gaming brings our largest digital launch library yet to our smallest Xbox ever.</p>
-            <a href="#" class="btn primary">Discover Xbox Series X</a>
-            <a href="#" class="btn secondary">Learn More</a>
+            <div class="play-tag">PLAY DAY ONE WITH GAME PASS</div>
+            <h1 class="hero-title">Call of Duty®:<br>Black Ops 7</h1>
+            <p class="hero-subtitle">The biggest Black Ops ever.<br>Pre-order now or play day one<br>with Ultimate.</p>
+            <div class="cta-buttons">
+                <a href="page1.html" class="btn-primary">JOIN THE PASS</a>
+                <button class="btn-secondary">PRE-ORDER NOW ›</button>
+            </div>
         </div>
-    </section>
-
-    <section class="products">
-        <h2>Explore Consoles</h2>
-        <div class="product-grid">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x180/007A33/FFFFFF?text=Series+X" alt="Xbox Series X">
-                <h3>Xbox Series X</h3>
-                <p>The fastest, most powerful Xbox ever.</p>
-                <a href="#" class="btn primary small">Buy Now</a>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/300x180/107C10/FFFFFF?text=Series+S" alt="Xbox Series S">
-                <h3>Xbox Series S</h3>
-                <p>All-digital next-gen performance.</p>
-                <a href="#" class="btn primary small">Buy Now</a>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/300x180/000000/FFFFFF?text=Game+Pass" alt="Xbox Game Pass">
-                <h3>Xbox Game Pass</h3>
-                <p>Play hundreds of high-quality games.</p>
-                <a href="#" class="btn primary small">Subscribe</a>
+        <div class="carousel-controls">
+            <button class="play-pause">▶</button>
+            <div class="carousel-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Xbox-Style Site. Not affiliated with Microsoft.</p>
+    </div>
+    <div class="img-dec-2">
+        <img src="https://assets.xboxservices.com/assets/37/ec/37ec5a7a-08b4-466f-93e3-81fb5dd0b471.svg?n=Homepage-FY20_Home-Icons-0_XGP_72x56-01.svg"
+            alt="">
+        <img src="https://assets.xboxservices.com/assets/e2/a8/e2a830ea-71e7-42fa-af94-7a07d66f150e.svg?n=Homepage-FY20_Home-Icons-0_Games_72x56-01.svg"
+            alt="">
+        <img src="https://cms-assets.xboxservices.com/assets/23/fa/23faa3d3-6b06-4f5a-af6b-398871766985.svg?n=Homepage-FY20_Home-Icons-0_Devices_88x56.svg"
+            alt="">
+        <img src="https://assets.xboxservices.com/assets/29/ff/29ffa9b2-2d48-433b-abb7-99229bcbaa8b.svg?n=Homepage-FY20_Home-Icons-0_Accessories_72x56-01.svg"
+            alt="">
+
+        <img src="https://assets.xboxservices.com/assets/50/9a/509a35c3-472d-46ed-b29d-2f47adca7be9.svg?n=Homepage-FY20_Home-Icons-0_Deals_72x56-01.svg"
+            alt="">
+
+        <img src="https://assets.xboxservices.com/assets/30/ab/30abec76-ab4c-4275-b0ca-725a6eb2f85f.svg?n=Homepage-FY20_Home-Icons-0_Sign-In_72x56-01.svg"
+            alt="">
+    </div>
+    <div class="text-dec">
+        <div class="exclusive-idea-1"><a href="">GAME PASS</a></div>
+        <div class="exclusive-idea-2"><a href="">GAMES</a></div>
+        <div class="exclusive-idea-3"><a href="">DEVICES</a></div>
+        <div class="exclusive-idea-4"><a href="">ACCESSORIES</a></div>
+        <div class="exclusive-idea-5"><a href="">DEALS</a></div>
+        <div class="exclusive-idea-6"><a href="">SIGN IN</a></div>
+    </div>
+
+    <section class="content-grid">
+        <div class="grid-container">
+            <div class="grid-item large-left">
+                <div>
+                    <img class="card-content simpsons-card"
+                        src="https://cms-assets.xboxservices.com/assets/5b/f1/5bf13e45-96e5-499d-96d3-f5deff5fa0a1.jpg?n=Fortnite_Large-tout-0_IP-Integration_1083x1222.jpg"
+                        alt="">
+                </div>
+            </div>
+
+            <div class="grid-item medium-top-right">
+                <div class="card-content green-card">
+                    <h2 class="card-subtitle">Discover your next<br>favourite game</h2>
+                    <p class="card-description">New games on day one.<br>Hundreds of PC and console<br>games.</p>
+                    <button class="btn-white">JOIN GAME PASS ›</button>
+                </div>
+            </div>
+
+            <div class="grid-item medium-bottom-right">
+                <div class="card-content gamepass-grid">
+                    <div class="gamepass-logo">
+                        <svg viewBox="0 0 200 60" style="width: 100%; height: auto;">
+                            <circle cx="30" cy="30" r="25" fill="none" stroke="#0e7a0d" stroke-width="3" />
+                            <path d="M20,30 L30,20 L40,30 L30,40 Z" fill="#0e7a0d" />
+                            <text x="70" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="bold"
+                                fill="#0e7a0d">XBOX</text>
+                            <text x="70" y="42" font-family="Arial, sans-serif" font-size="14" font-weight="600"
+                                fill="#0e7a0d">GAME PASS</text>
+                        </svg>
+                    </div>
+                    <div class="game-thumbnails">
+                        <div class="game-thumb"></div>
+                        <div class="game-thumb"></div>
+                        <div class="game-thumb"></div>
+                        <div class="game-thumb"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-item bottom-full">
+                <div class="card-content controller-card">
+                    <div class="controller-image"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="promo-section">
+        <div class="promo-container">
+            <div class="promo-card purple-card">
+                <span class="promo-badge">NOW AVAILABLE</span>
+                <h2 class="promo-title">Minecraft Dragon Ball Z DLC</h2>
+                <p class="promo-text">Step into the arena and battle iconic fighters!</p>
+                <button class="btn-promo">GET IT NOW ›</button>
+            </div>
+
+            <div class="promo-card white-card">
+                <span class="promo-badge yellow">PLAY WITH GAME PASS</span>
+                <h2 class="promo-title-dark">Ball x Pit</h2>
+                <p class="promo-text-dark">Ballbylon has fallen in this fantasy roguelite, now on Game Pass</p>
+                <button class="btn-promo-dark">GET IT NOW ›</button>
+            </div>
+
+            <div class="promo-card image-card">
+                <div class="fantasy-art"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-section">
+                <span class="follow-text">Follow Xbox</span>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">✉</a>
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">𝕏</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">💬</a>
+                    <a href="#" class="social-icon">🎵</a>
+                    <a href="#" class="social-icon">▶</a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Browse</h3>
+                    <ul>
+                        <li><a href="#">Xbox consoles</a></li>
+                        <li><a href="#">Xbox games</a></li>
+                        <li><a href="#">Xbox Game Pass</a></li>
+                        <li><a href="#">Xbox accessories</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Xbox Support</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Community Standards</a></li>
+                        <li><a href="#">Photosensitive Seizure Warning</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Microsoft Store</h3>
+                    <ul>
+                        <li><a href="#">Microsoft account</a></li>
+                        <li><a href="#">Microsoft Store Support</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Orders tracking</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>For Developers</h3>
+                    <ul>
+                        <li><a href="#">Games</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-left">
+                    <button class="language-btn">🌐 English (India)</button>
+                    <button class="privacy-btn">🔒 Your Privacy Choices</button>
+                    <a href="#" class="footer-link">Consumer Health Privacy</a>
+                </div>
+                <div class="footer-right">
+                    <a href="#" class="footer-link">Contact Microsoft</a>
+                    <a href="#" class="footer-link">Privacy & Cookies</a>
+                    <a href="#" class="footer-link">Terms of use</a>
+                    <a href="#" class="footer-link">Trademarks</a>
+                    <a href="#" class="footer-link">Third Party Notices</a>
+                    <a href="#" class="footer-link">About our ads</a>
+                    <span class="copyright">© Microsoft 2025</span>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        const dots = document.querySelectorAll('.dot');
+        const playPause = document.querySelector('.play-pause');
+        let isPlaying = false;
+        let currentSlide = 0;
+
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                dots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+                currentSlide = idx;
+            });
+        });
+
+        playPause.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            playPause.textContent = isPlaying ? '⏸' : '▶';
+        });
+    </script>
 </body>
+
 </html>

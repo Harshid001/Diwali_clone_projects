@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Xbox Game Pass</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 0 20px;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .microsoft-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+
+        .xbox-logo {
+            color: #107c10;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            color: #e0e0e0;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .nav-menu li:hover {
+            color: #107c10;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .join-btn {
+            background: #9ef01a;
+            color: #1a1a1a;
+            border: none;
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+
+        .join-btn:hover {
+            background: #b5ff3d;
+            transform: scale(1.05);
+        }
+
+        .search-btn, .cart-btn, .signin-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            color: #e0e0e0;
+        }
+
+        .hero-section {
+            position: relative;
+            min-height: 90vh;
+            padding: 80px 40px;
+            overflow: hidden;
+        }
+
+        .background-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 15px;
+            padding: 20px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .bg-image {
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .bg-image:hover {
+            opacity: 0.8;
+        }
+
+        .bg-image:nth-child(1) {
+            background: linear-gradient(135deg, #2d4a5c 0%, #4a6b7c 100%);
+        }
+
+        .bg-image:nth-child(2) {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+        }
+
+        .bg-image:nth-child(3) {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2e5984 100%);
+        }
+
+        .bg-image:nth-child(4) {
+            background: linear-gradient(135deg, #4a0e4e 0%, #6b1b6f 100%);
+        }
+
+        .bg-image:nth-child(5) {
+            background: linear-gradient(135deg, #2c5f2d 0%, #3f7f40 100%);
+        }
+
+        .bg-image:nth-child(6) {
+            background: linear-gradient(135deg, #5c2e2e 0%, #7f4040 100%);
+        }
+
+        .bg-image:nth-child(7) {
+            background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+        }
+
+        .bg-image:nth-child(8) {
+            background: linear-gradient(135deg, #34495e 0%, #5d6d7e 100%);
+        }
+
+        .bg-image:nth-child(9) {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .main-title {
+            font-size: 92px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .accent-line {
+            width: 120px;
+            height: 6px;
+            background: #9ef01a;
+            margin-bottom: 40px;
+        }
+
+        .subtitle {
+            font-size: 28px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .price-text {
+            font-size: 24px;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            background: #9ef01a;
+            color: #1a1a1a;
+            border: none;
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button:hover {
+            background: #b5ff3d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(158, 240, 26, 0.3);
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            color: #a0a0a0;
+            margin-top: 30px;
+            line-height: 1.6;
+        }
+
+        .disclaimer a {
+            color: #9ef01a;
+            text-decoration: underline;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .play-pause {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid white;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .play-pause:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: white;
+        }
+
+        .dot:hover {
+            transform: scale(1.2);
+        }
+
+        .floating-join-btn {
+            position: fixed;
+            top: 50%;
+            right: 40px;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .floating-join-btn button {
+            background: #9ef01a;
+            color: #1a1a1a;
+            border: none;
+            padding: 14px 28px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            box-shadow: 0 4px 12px rgba(158, 240, 26, 0.3);
+            transition: all 0.3s;
+        }
+
+        .floating-join-btn button:hover {
+            background: #b5ff3d;
+            box-shadow: 0 6px 20px rgba(158, 240, 26, 0.5);
+        }
+
+        @media (max-width: 1024px) {
+            .main-title {
+                font-size: 64px;
+            }
+
+            .subtitle {
+                font-size: 22px;
+            }
+
+            .background-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .floating-join-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .main-title {
+                font-size: 48px;
+            }
+
+            .hero-section {
+                padding: 40px 20px;
+            }
+
+            .background-images {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .discover-section {
+            background: #000;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .discover-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .discover-title {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .discover-subtitle {
+            font-size: 24px;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+        }
+
+        .discover-description {
+            font-size: 20px;
+            color: #c0c0c0;
+            margin-bottom: 60px;
+        }
+
+        .game-showcase {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .game-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.4s ease;
+        }
+
+        .game-card:hover .game-image {
+            transform: scale(1.1);
+        }
+
+        .hollow-knight {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.3), rgba(255, 69, 0, 0.3)),
+                        radial-gradient(circle at 50% 50%, #fff 5%, transparent 5%),
+                        linear-gradient(45deg, #8b0000 0%, #ff4500 50%, #ffa500 100%);
+            position: relative;
+        }
+
+        .hollow-knight::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            background: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            clip-path: polygon(50% 0%, 70% 20%, 80% 20%, 80% 40%, 90% 50%, 80% 60%, 80% 80%, 70% 80%, 50% 100%, 30% 80%, 20% 80%, 20% 60%, 10% 50%, 20% 40%, 20% 20%, 30% 20%);
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+        }
+
+        .hollow-knight::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #000;
+            border-radius: 50%;
+            top: 45%;
+            left: 40%;
+            box-shadow: 60px 0 0 #000;
+        }
+
+        .call-of-duty {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #3a3a3a 50%, #ff8c00 75%, #ffa500 100%);
+            position: relative;
+        }
+
+        .call-of-duty::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 40%, rgba(255, 140, 0, 0.3) 50%, transparent 60%),
+                linear-gradient(0deg, transparent 40%, rgba(0, 0, 0, 0.5) 50%, transparent 60%);
+        }
+
+        .call-of-duty::after {
+            content: '⚔';
+            position: absolute;
+            font-size: 120px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.3;
+        }
+
+        .fallout {
+            background: linear-gradient(135deg, #1e90ff 0%, #4169e1 33%, #ffd700 66%, #ffed4e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fallout::before {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: #ffd700;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 15px solid #000;
+        }
+
+        .fallout::after {
+            content: '😊';
+            position: absolute;
+            font-size: 180px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+
+        @media (max-width: 1024px) {
+            .game-showcase {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .discover-title {
+                font-size: 42px;
+            }
+        }
+
+        .app-section {
+            background: #f5f5f5;
+            padding: 80px 40px;
+        }
+
+        .app-banner {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            background: white;
+            border: 3px solid #107c10;
+            border-radius: 8px;
+            padding: 80px 60px;
+        }
+
+        .app-title {
+            font-size: 42px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 35px;
+            line-height: 1.3;
+        }
+
+        .app-btn {
+            background: white;
+            color: #107c10;
+            border: 2px solid #107c10;
+            padding: 14px 40px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .app-btn:hover {
+            background: #107c10;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 124, 16, 0.3);
+        }
+
+        .app-requirement {
+            font-size: 14px;
+            color: #5e5e5e;
+        }
+
+        .benefits-section {
+            background: white;
+            padding: 100px 40px;
+        }
+
+        .benefits-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .benefits-title {
+            font-size: 52px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 30px;
+        }
+
+        .benefit-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            min-height: 400px;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .benefit-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.4s ease;
+        }
+
+        .benefit-card:hover .benefit-image {
+            transform: scale(1.05);
+        }
+
+        .green-abstract {
+            background: linear-gradient(135deg, #a8d5ba 0%, #7cb992 50%, #4a7c59 100%);
+            position: relative;
+        }
+
+        .green-abstract::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            top: 20%;
+            left: 30%;
+            filter: blur(40px);
+        }
+
+        .green-abstract::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(16, 124, 16, 0.4);
+            border-radius: 50%;
+            bottom: 20%;
+            right: 20%;
+            filter: blur(50px);
+        }
+
+        .blue-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+            position: relative;
+        }
+
+        .blue-gradient::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(60px);
+        }
+
+        .game-preview {
+            background: linear-gradient(135deg, #c4b5d6 0%, #9b8bb5 50%, #7d6a94 100%);
+            position: relative;
+        }
+
+        .game-preview::before {
+            content: 'BATTLETOADS';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-preview::after {
+            content: '🐸';
+            position: absolute;
+            font-size: 120px;
+            bottom: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.6;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        @media (max-width: 1024px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-title {
+                font-size: 32px;
+            }
+
+            .benefits-title {
+                font-size: 38px;
+            }
+        }
+
+        .pricing-section {
+            background: #f5f5f5;
+            padding: 100px 40px;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .gamepass-logo-large {
+            margin: 0 auto 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pricing-main-title {
+            font-size: 52px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+        }
+
+        .pricing-main-subtitle {
+            font-size: 20px;
+            color: #262626;
+            line-height: 1.6;
+        }
+
+        .pricing-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #d0d0d0;
+            border-radius: 8px;
+            padding: 40px 35px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: #107c10;
+            box-shadow: 0 8px 24px rgba(16, 124, 16, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.highlighted {
+            border: 3px solid #107c10;
+            border-width: 3px;
+        }
+
+        .plan-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .plan-price {
+            font-size: 18px;
+            color: #262626;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .plan-price sup {
+            font-size: 12px;
+        }
+
+        .select-btn {
+            background: #9ef01a;
+            color: #1a1a1a;
+            border: none;
+            padding: 12px 40px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .select-btn:hover {
+            background: #b5ff3d;
+            transform: scale(1.03);
+        }
+
+        .plan-disclaimer {
+            font-size: 13px;
+            color: #5e5e5e;
+            font-style: italic;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .plan-disclaimer a {
+            color: #107c10;
+            text-decoration: underline;
+        }
+
+        .features-list {
+            list-style: none;
+            text-align: left;
+            padding: 0;
+        }
+
+        .features-list li {
+            font-size: 15px;
+            color: #262626;
+            margin-bottom: 18px;
+            line-height: 1.5;
+            padding-left: 5px;
+        }
+
+        .features-list li strong {
+            font-weight: 700;
+        }
+
+        .features-list li sup {
+            font-size: 11px;
+        }
+
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo-section">
+                    <div class="microsoft-logo">Microsoft</div>
+                    <div class="xbox-logo">XBOX</div>
+                </div>
+                <ul class="nav-menu">
+                    <li>Game Pass ∨</li>
+                    <li>Games ∨</li>
+                    <li>Devices ∨</li>
+                    <li>Store ∨</li>
+                    <li>Community ∨</li>
+                    <li>Support ∨</li>
+                    <li>Developers ∨</li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <span style="color: #e0e0e0; font-size: 13px;">All Microsoft ∨</span>
+                <button class="search-btn">Search 🔍</button>
+                <button class="cart-btn">Cart 🛒</button>
+                <button class="signin-btn">Sign in 👤</button>
+                <button class="join-btn">JOIN GAME PASS ›</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="background-images">
+            <div class="bg-image"></div>
+            <div class="bg-image"></div>
+            <div class="bg-image"></div>
+            <div class="bg-image"></div>
+            <div class="bg-image"></div>
+            <div class="bg-image"></div>
+            <div class="bg-image"></div>
+            <div class="bg-image"></div>
+            <div class="bg-image"></div>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="main-title">XBOX GAME PASS</h1>
+            <div class="accent-line"></div>
+            <p class="subtitle">Enjoy a library of hundreds of games to play on your devices.</p>
+            <p class="price-text">Plans start at ₹ 499/month.</p>
+            <button class="cta-button">JOIN GAME PASS ›</button>
+            <p class="disclaimer">
+                Subscription continues automatically at the regular monthly price unless canceled through your Microsoft Account. See <a href="#">terms</a>.
+            </p>
+        </div>
+
+        <div class="carousel-controls">
+            <button class="play-pause">⏸</button>
+            <div class="carousel-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="floating-join-btn">
+        <button>JOIN GAME PASS ›</button>
+    </div>
+
+    <section class="discover-section">
+        <div class="discover-content">
+            <h2 class="discover-title">Discover your next favourite game</h2>
+            <p class="discover-subtitle">Explore hundreds of games from every genre.</p>
+            <p class="discover-description">With new games added all the time, there's always something new to play.</p>
+            
+            <div class="game-showcase">
+                <div class="game-card">
+                    <div class="game-image hollow-knight"></div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image call-of-duty"></div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image fallout"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-section">
+        <div class="app-banner">
+            <h2 class="app-title">Get the Xbox PC app to discover, download<br>and play hundreds of games.</h2>
+            <button class="app-btn">GET THE APP ›</button>
+            <p class="app-requirement">Requires Windows 10/11, version 22H2 or higher</p>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="benefits-content">
+            <h2 class="benefits-title">Enjoy more benefits with Xbox Game Pass</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card card-left">
+                    <div class="benefit-image green-abstract"></div>
+                </div>
+                <div class="benefit-card card-center">
+                    <div class="benefit-image blue-gradient"></div>
+                </div>
+                <div class="benefit-card card-right">
+                    <div class="benefit-image game-preview"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="pricing-header">
+            <div class="gamepass-logo-large">
+                <svg viewBox="0 0 400 100" style="width: 100%; max-width: 500px; height: auto;">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#107c10" stroke-width="4"/>
+                    <path d="M30,50 L50,30 L70,50 L50,70 Z" fill="#107c10"/>
+                    <text x="110" y="45" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#107c10">XBOX</text>
+                    <text x="110" y="75" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="#107c10">GAME PASS</text>
+                </svg>
+            </div>
+            <h2 class="pricing-main-title">Choose the plan that's right for you</h2>
+            <p class="pricing-main-subtitle">Play the games you want on any screen. Get more value. Earn more rewards.<br>Cancel any time to stop future charges.</p>
+        </div>
+        
+        <div class="pricing-content">
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="plan-name">Essential</h3>
+                    <p class="plan-price">Get your first month for ₹99,<br>then ₹499/month<sup>1</sup></p>
+                    <button class="select-btn">SELECT ›</button>
+                    <p class="plan-disclaimer">Subscription continues automatically.<br>See <a href="#">terms</a>.</p>
+                    
+                    <ul class="features-list">
+                        <li>✓ 50+ games on Xbox console and PC</li>
+                        <li>✓ Online console multiplayer</li>
+                        <li>✓ Benefits for games like League of Legends and Call of Duty: Warzone</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card">
+                    <h3 class="plan-name">Premium</h3>
+                    <p class="plan-price">Get your first 14 days for ₹99,<br>then ₹699/month<sup>1</sup></p>
+                    <button class="select-btn">SELECT ›</button>
+                    <p class="plan-disclaimer">Subscription continues automatically.<br>See <a href="#">terms</a>.</p>
+                    
+                    <ul class="features-list">
+                        <li>✓ 200+ games on Xbox console and PC</li>
+                        <li>✓ New Xbox published games join the library within 12 months of launch<sup>2</sup></li>
+                        <li>✓ Benefits for games like League of Legends and Call of Duty: Warzone</li>
+                        <li>✓ Online console multiplayer</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card highlighted">
+                    <h3 class="plan-name">Ultimate</h3>
+                    <p class="plan-price">₹1,389/month</p>
+                    <button class="select-btn">SELECT ›</button>
+                    <p class="plan-disclaimer">Subscription continues automatically.<br>See <a href="#">terms</a>.</p>
+                    
+                    <ul class="features-list">
+                        <li>✓ 400+ games on Xbox console and PC</li>
+                        <li>✓ <strong>New games on day one</strong>, including new Xbox published games and third-party games</li>
+                        <li>✓ Includes EA Play & Ubisoft+ Classics. Fortnite Crew coming November.<sup>3</sup></li>
+                        <li>✓ Benefits for games like League of Legends and Call of Duty: Warzone</li>
+                        <li>✓ Online console multiplayer</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const dots = document.querySelectorAll('.dot');
+        const playPause = document.querySelector('.play-pause');
+        let isPlaying = true;
+        let currentSlide = 0;
+
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                dots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+                currentSlide = idx;
+            });
+        });
+
+        playPause.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            playPause.textContent = isPlaying ? '⏸' : '▶';
+        });
+
+        // Auto-rotate background images
+        const bgImages = document.querySelectorAll('.bg-image');
+        setInterval(() => {
+            bgImages.forEach((img, idx) => {
+                img.style.opacity = Math.random() > 0.5 ? '0.4' : '0.2';
+            });
+        }, 3000);
+    </script>
+</body>
+</html>
